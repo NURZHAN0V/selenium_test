@@ -5,7 +5,7 @@
     <title>Форма приветствия</title>
     <style>
         body { font-family: Arial; padding: 20px; }
-        input, button { margin: 10px 0; padding: 5px 10px; }
+        input, button, select { margin: 10px 0; padding: 5px 10px; display: block; }
         #greeting { margin-top: 20px; color: green; font-weight: bold; }
     </style>
 </head>
@@ -14,7 +14,24 @@
 <h2>Введите ваше имя:</h2>
 
 <input type="text" id="name-input" placeholder="Имя">
-<br>
+
+<label>
+    <input type="checkbox" id="subscribe-checkbox">
+    Подписаться на новости
+</label>
+
+<label>
+    Выберите язык:
+    <select id="language-select">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+    </select>
+</label>
+
+<p>Выберите пол:</p>
+<label><input type="radio" name="gender" value="male"> Мужской</label>
+<label><input type="radio" name="gender" value="female"> Женский</label>
+
 <button id="greet-btn">Поздороваться</button>
 
 <div id="greeting"></div>
@@ -22,7 +39,16 @@
 <script>
     document.getElementById('greet-btn').addEventListener('click', function () {
         const name = document.getElementById('name-input').value;
-        document.getElementById('greeting').innerText = "Привет, " + name + "!";
+        const isSubscribed = document.getElementById('subscribe-checkbox').checked;
+        const language = document.getElementById('language-select').value;
+        const gender = document.querySelector('input[name="gender"]:checked')?.value || "не указан";
+
+        let greeting = "Привет, " + name + "!";
+        greeting += " Пол: " + gender + ".";
+        greeting += " Язык: " + language + ".";
+        greeting += isSubscribed ? " Вы подписаны!" : " Без подписки.";
+
+        document.getElementById('greeting').innerText = greeting;
     });
 </script>
 
