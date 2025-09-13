@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма приветствия</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input, button { margin: 10px 0; padding: 5px 10px; }
+        #greeting { margin-top: 20px; color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Введите ваше имя:</h2>
+
+<input type="text" id="name-input" placeholder="Имя">
+<br>
+<button id="greet-btn">Поздороваться</button>
+
+<div id="greeting"></div>
+
+<script>
+    document.getElementById('greet-btn').addEventListener('click', function () {
+        const name = document.getElementById('name-input').value;
+        document.getElementById('greeting').innerText = "Привет, " + name + "!";
+    });
+</script>
+
+</body>
+</html>
